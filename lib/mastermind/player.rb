@@ -4,5 +4,6 @@ module Mastermind
     def initialize(name = "Human")
       @name = name
     end
+
   end
 end

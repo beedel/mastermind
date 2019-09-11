@@ -20,6 +20,19 @@ module Mastermind
         end
       end
     end
-    
+
+    context "#game_over" do
+      it "returns :winner if winner? is true" do
+        board = Board.new
+        board.stub(:winner?) { true }
+        expect(board.game_over).to eq :winner
+      end
+
+      it "returns false if winner? is false" do
+        board = Board.new
+        board.stub(:winner?) { false }
+        expect(board.game_over).to eq false
+      end
+    end    
   end
 end
