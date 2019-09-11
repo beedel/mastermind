@@ -1,7 +1,8 @@
 module Mastermind
-  class KeyPeg < Peg
+  class KeyPeg
+    attr_reader :color
     def initialize(color = "")
-      super(color)
+      @color = color
     end
   end
 end

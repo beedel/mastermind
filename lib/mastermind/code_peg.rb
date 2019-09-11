@@ -1,7 +1,8 @@
 module Mastermind
-  class CodePeg < Peg
+  class CodePeg
+    attr_reader :color
     def initialize(color = "")
-      super(color)
+      @color = color
     end
   end
 end
