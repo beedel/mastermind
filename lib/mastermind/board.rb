@@ -1,3 +1,5 @@
+require "colorize"
+
 module Mastermind
   class Board
     attr_reader :grid, :pins
@@ -15,19 +17,19 @@ module Mastermind
     end
 
     def the_code
-      code = ["black", "green", "yellow", "red"]
+      code = ["1", "2", "3", "4"]
     end
 
     def display_grid
       puts ""
-      puts "===== THE BOARD ====".center(100)
+      puts "=================== THE BOARD ===================="
       puts ""
       0.upto(3) do |i|
         @grid.each do |row|
           if row[i].nil?
-            print " __ |".rjust(10)
+            print "  __ ".rjust(4)
           else
-            print (" " + row[i].to_s + " |").rjust(10)
+            print ("  " + row[i].to_s + " |").rjust(4)
           end
         end
         puts ""
@@ -36,18 +38,19 @@ module Mastermind
 
     def display_pins
       puts ""
-      puts "==== THE PINS ====".center(100)
+      puts "==================== THE PINS ===================="
       puts ""
       0.upto(3) do |i|
         @pins.each do |row|
-          if row[i].nil?
-            print " __ |".rjust(10)
-          else
-            print (" " + row[i].to_s + " |").rjust(10)
+          if row[i] == "red"
+            print " ".center(4).on_red + " "
+          elsif row[i] == "white"
+            print " ".center(4).on_white + " "
           end
         end
         puts ""
       end
+      puts "=================================================="
     end
 
     def set_guess(guess_number, guess)

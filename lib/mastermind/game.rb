@@ -60,7 +60,7 @@ module Mastermind
       while i < 10 
         board.display_grid
         board.display_pins
-        puts "#{player.name}! Guess the code."
+        puts "Guess the code, #{player.name}."
         guess = solicit_move
 
         if winner?(i, guess)
