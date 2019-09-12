@@ -27,7 +27,20 @@ module Mastermind
       false
     end
 
-    def winner?(guess)
+    def find_pins(guess)
+      pins = []
+
+      guess.each_with_index do |guess, i|
+        if guess == board.the_code[i]
+          pins << "red"
+        elsif board.the_code.include?(guess)
+          pins << "white"
+        end
+      end
+      pins
+    end
+
+    def winner?(guess_number, guess)
       guess.each_index do |index|
         if guess[index] == board.the_code[index]
           next
@@ -46,14 +59,17 @@ module Mastermind
       i = 0
       while i < 10 
         board.display_grid
+        board.display_pins
         puts "#{player.name}! Guess the code."
         guess = solicit_move
 
-        if winner?(guess)
+        if winner?(i, guess)
           puts "You won!"
           break
         else
+          pins = find_pins(guess)
           board.set_guess(i, guess)
+          board.set_pins(i, pins)
           i += 1
         end   
       end   
